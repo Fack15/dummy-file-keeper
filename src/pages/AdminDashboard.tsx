@@ -2,75 +2,97 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Settings, Wine, Users } from 'lucide-react';
+import { Grid2X2 } from 'lucide-react';
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleEnterAdminPanel = () => {
+  const handleLogin = () => {
     navigate('/login');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <Wine className="h-16 w-16 text-purple-600 mx-auto mb-4" />
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Administration Dashboard</h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Manage your wine products, ingredients, and business operations from this central hub.
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center space-x-2">
+              <Grid2X2 className="h-6 w-6 text-gray-700" />
+              <span className="text-lg font-medium text-gray-900">Open E-Label</span>
+            </div>
+            
+            {/* Navigation */}
+            <nav className="hidden md:flex space-x-8">
+              <a href="#" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                Products
+              </a>
+              <a href="#" className="text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                Ingredients
+              </a>
+            </nav>
+            
+            {/* Login Button */}
+            <Button 
+              onClick={handleLogin}
+              variant="ghost" 
+              className="text-gray-700 hover:text-gray-900"
+            >
+              Login
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 flex items-center justify-center px-4 py-24">
+        <div className="text-center max-w-2xl mx-auto">
+          {/* Logo Icon */}
+          <div className="mb-12">
+            <div className="inline-flex">
+              <div className="grid grid-cols-2 gap-2 p-8">
+                <div className="w-12 h-12 bg-gray-400 rounded"></div>
+                <div className="w-12 h-12 bg-gray-400 rounded"></div>
+                <div className="w-12 h-12 bg-gray-400 rounded"></div>
+                <div className="w-12 h-12 bg-gray-400 rounded grid grid-cols-2 gap-1 p-2">
+                  <div className="bg-white rounded-sm"></div>
+                  <div className="bg-white rounded-sm"></div>
+                  <div className="bg-white rounded-sm"></div>
+                  <div className="bg-white rounded-sm"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Title */}
+          <h1 className="text-5xl font-normal text-gray-900 mb-6">
+            Open E-Label
+          </h1>
+          
+          {/* Subtitle */}
+          <p className="text-xl text-gray-600 mb-16">
+            Open-source solution for electronic labels.
+          </p>
+          
+          {/* CTA Button */}
+          <Button 
+            onClick={handleLogin}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base font-medium rounded-md h-12"
+          >
+            Administration Dashboard
+          </Button>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-8 text-center">
+          <p className="text-sm text-gray-500">
+            Electronic label provided by Open E-Label. Web Accessibility Guidelines.
           </p>
         </div>
-
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <Card>
-              <CardHeader className="text-center">
-                <Wine className="h-12 w-12 text-purple-600 mx-auto mb-2" />
-                <CardTitle>Products</CardTitle>
-                <CardDescription>Manage wine inventory and details</CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card>
-              <CardHeader className="text-center">
-                <Settings className="h-12 w-12 text-green-600 mx-auto mb-2" />
-                <CardTitle>Ingredients</CardTitle>
-                <CardDescription>Track ingredients and allergens</CardDescription>
-              </CardHeader>
-            </Card>
-            
-            <Card>
-              <CardHeader className="text-center">
-                <Users className="h-12 w-12 text-blue-600 mx-auto mb-2" />
-                <CardTitle>Operations</CardTitle>
-                <CardDescription>Business management tools</CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-
-          <div className="text-center">
-            <Card className="max-w-md mx-auto">
-              <CardHeader>
-                <CardTitle>Ready to get started?</CardTitle>
-                <CardDescription>
-                  Access the admin panel to begin managing your wine business
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button 
-                  onClick={handleEnterAdminPanel}
-                  className="w-full bg-purple-600 hover:bg-purple-700"
-                  size="lg"
-                >
-                  Enter Admin Panel
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
+      </footer>
     </div>
   );
 };
