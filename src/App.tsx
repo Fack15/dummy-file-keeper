@@ -13,6 +13,8 @@ import ProductDetails from "./pages/ProductDetails";
 import IngredientList from "./pages/IngredientList";
 import IngredientForm from "./pages/IngredientForm";
 import IngredientDetails from "./pages/IngredientDetails";
+import ProductImport from "./pages/ProductImport";
+import IngredientImport from "./pages/IngredientImport";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -74,6 +76,14 @@ const AppRoutes = () => {
         } 
       />
       <Route 
+        path="/products/import" 
+        element={
+          <ProtectedRoute>
+            <ProductImport />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
         path="/ingredients" 
         element={
           <ProtectedRoute>
@@ -102,6 +112,14 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute>
             <IngredientDetails />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/ingredients/import" 
+        element={
+          <ProtectedRoute>
+            <IngredientImport />
           </ProtectedRoute>
         } 
       />

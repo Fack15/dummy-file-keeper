@@ -13,6 +13,7 @@ const AuthForm: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isRegisterMode, setIsRegisterMode] = useState(false);
   const { login, register } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -75,13 +76,15 @@ const AuthForm: React.FC = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md border-0 shadow-lg">
         <CardHeader className="space-y-1 pb-6">
-          <CardTitle className="text-2xl font-semibold text-gray-900">Login</CardTitle>
+          <CardTitle className="text-2xl font-semibold text-gray-900">
+            {isRegisterMode ? 'Register' : 'Login'}
+          </CardTitle>
           <CardDescription className="text-gray-600">
-            Sign in to your account
+            {isRegisterMode ? 'Create a new account' : 'Sign in to your account'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={isRegisterMode ? handleRegister : handleLogin} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email" className="text-sm font-medium text-gray-700">
                 Email
@@ -112,28 +115,49 @@ const AuthForm: React.FC = () => {
               />
             </div>
             
+            {isRegisterMode && (
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
+                  Confirm Password
+                </Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="••••••••"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="h-12 bg-gray-100 border-0 text-gray-900"
+                  required
+                />
+              </div>
+            )}
+            
             <Button 
               type="submit" 
               className="w-full h-12 bg-gray-900 hover:bg-gray-800 text-white font-medium mt-6"
               disabled={isLoading}
             >
-              {isLoading ? 'Signing in...' : 'Login'}
+              {isLoading 
+                ? (isRegisterMode ? 'Creating account...' : 'Signing in...') 
+                : (isRegisterMode ? 'Register' : 'Login')
+              }
             </Button>
           </form>
           
           <div className="text-center">
             <span className="text-sm text-gray-600">
-              Don't have an account?{' '}
+              {isRegisterMode ? 'Already have an account?' : "Don't have an account?"}{' '}
               <button 
                 type="button"
                 className="text-blue-600 hover:text-blue-700 font-medium"
                 onClick={() => {
-                  // Toggle to register mode - simplified for now
+                  setIsRegisterMode(!isRegisterMode);
                   setEmail('');
                   setPassword('');
+                  setConfirmPassword('');
                 }}
               >
-                Register
+                {isRegisterMode ? 'Login' : 'Register'}
               </button>
             </span>
           </div>

@@ -60,16 +60,31 @@ const ProductList: React.FC = () => {
   };
 
   const handleImport = () => {
-    toast({
-      title: "Import",
-      description: "Import functionality will be implemented with backend.",
-    });
+    navigate('/products/import');
   };
 
   const handleExport = () => {
-    toast({
-      title: "Export",
-      description: "Export functionality will be implemented with backend.",
+    import('xlsx').then((XLSX) => {
+      const worksheet = XLSX.utils.json_to_sheet(products.map(product => ({
+        Name: product.name,
+        Brand: product.brand,
+        'Net Volume': product.netVolume,
+        Vintage: product.vintage,
+        Type: product.type,
+        'Sugar Content': product.sugarContent,
+        Appellation: product.appellation,
+        SKU: product.sku
+      })));
+      
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Products');
+      
+      XLSX.writeFile(workbook, 'products.xlsx');
+      
+      toast({
+        title: "Export successful",
+        description: "Products exported to Excel file",
+      });
     });
   };
 

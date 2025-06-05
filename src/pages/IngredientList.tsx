@@ -53,16 +53,27 @@ const IngredientList: React.FC = () => {
   };
 
   const handleImport = () => {
-    toast({
-      title: "Import",
-      description: "Import functionality will be implemented with backend.",
-    });
+    navigate('/ingredients/import');
   };
 
   const handleExport = () => {
-    toast({
-      title: "Export",
-      description: "Export functionality will be implemented with backend.",
+    import('xlsx').then((XLSX) => {
+      const worksheet = XLSX.utils.json_to_sheet(ingredients.map(ingredient => ({
+        Name: ingredient.name,
+        Category: ingredient.category,
+        'E Number': ingredient.eNumber || '',
+        Allergens: ingredient.allergens.join(', ')
+      })));
+      
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Ingredients');
+      
+      XLSX.writeFile(workbook, 'ingredients.xlsx');
+      
+      toast({
+        title: "Export successful",
+        description: "Ingredients exported to Excel file",
+      });
     });
   };
 
