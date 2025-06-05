@@ -12,7 +12,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,16 +41,16 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center px-4 py-16">
+      <main className="flex-1 flex items-center justify-center px-4 py-24">
         <div className="text-center max-w-2xl mx-auto">
           {/* Logo Icon */}
-          <div className="mb-8">
+          <div className="mb-12">
             <div className="inline-flex">
-              <div className="grid grid-cols-2 gap-1 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
-                <div className="w-8 h-8 bg-gray-400 rounded"></div>
-                <div className="w-8 h-8 bg-gray-400 rounded"></div>
-                <div className="w-8 h-8 bg-gray-400 rounded"></div>
-                <div className="w-8 h-8 bg-gray-400 rounded grid grid-cols-2 gap-0.5 p-1">
+              <div className="grid grid-cols-2 gap-2 p-8">
+                <div className="w-12 h-12 bg-gray-400 rounded"></div>
+                <div className="w-12 h-12 bg-gray-400 rounded"></div>
+                <div className="w-12 h-12 bg-gray-400 rounded"></div>
+                <div className="w-12 h-12 bg-gray-400 rounded grid grid-cols-2 gap-1 p-2">
                   <div className="bg-white rounded-sm"></div>
                   <div className="bg-white rounded-sm"></div>
                   <div className="bg-white rounded-sm"></div>
@@ -61,19 +61,19 @@ const Index = () => {
           </div>
           
           {/* Title */}
-          <h1 className="text-4xl font-normal text-gray-900 mb-4">
+          <h1 className="text-5xl font-normal text-gray-900 mb-6">
             Open E-Label
           </h1>
           
           {/* Subtitle */}
-          <p className="text-lg text-gray-600 mb-12">
+          <p className="text-xl text-gray-600 mb-16">
             Open-source solution for electronic labels.
           </p>
           
           {/* CTA Button */}
           <Button 
             onClick={handleAdminDashboard}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base font-medium rounded-md"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base font-medium rounded-md h-12"
           >
             Administration Dashboard
           </Button>
@@ -81,8 +81,8 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-6 text-center">
+      <footer className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-8 text-center">
           <p className="text-sm text-gray-500">
             Electronic label provided by Open E-Label. Web Accessibility Guidelines.
           </p>
